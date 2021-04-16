@@ -1,0 +1,29 @@
+{
+  "name": "personalization-semantics-explorations",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "_build": "npx rollup --config && node part-build.js",
+    "prebuild": "npm test",
+    "build": "npm run _build && npx addons-linter browser-extension",
+    "build:quick": "npm run _build",
+    "clean-extension": "rm -fv browser-extension/*",
+    "prepare": "husky install",
+    "test": "npx eslint . && npx ava"
+  },
+  "ava": {
+    "require": [
+      "esm"
+    ]
+  },
+  "devDependencies": {
+    "addons-linter": "^3.2.0",
+    "ava": "^3.15.0",
+    "eslint": "^7.24.0",
+    "esm": "^3.2.25",
+    "glob": "^7.1.6",
+    "husky": "^6.0.0",
+    "jsdom": "^16.5.3",
+    "rollup": "^2.45.2"
+  }
+}

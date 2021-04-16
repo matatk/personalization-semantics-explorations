@@ -1,0 +1,32 @@
+{
+  "icons": {
+    "48": "logo.png"
+  },
+  "browser_action": {
+    "default_title": "Personalization Semantics Explorations",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "<all_urls>"
+  ],
+  "manifest_version": 2,
+  "name": "Personalization Semantics Explorations",
+  "short_name": "personalization-semantics-explorations",
+  "version": "0.0.0",
+  "description": "Implementation of Module 1",
+  "author": "Matthew Tylee Atkinson",
+  "homepage_url": "https://github.com/matatk/personalization-semantics-explorations",
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "personalization.css"
+      ]
+    }
+  ]
+}
