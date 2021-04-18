@@ -12,6 +12,7 @@ body {
 	width: 60em;
 	max-width: 99%;
 	margin: auto;
+	margin-bottom: 2em;
 }
 
 button { font-size: inherit; }
@@ -43,6 +44,20 @@ p > code {
 }
 
 .example + .example { margin-top: 1em; }
+
+.btn {
+	color: black;
+	text-decoration: none;
+	background-color: lightblue;
+	border-radius: 1em;
+	padding: 1em;
+	border: 2px solid black;
+}
+.btn:focus, .btn:hover {
+	background-color: black;
+	color: lightblue;
+	border: 2px solid lightblue;
+}
 </style>
 </head>
 <body>
@@ -57,15 +72,15 @@ p > code {
 	<p><strong>Contents</strong></p>
 
 	<ul>
-		<li><p><a href="#module1">Module 1 Specification</a> (<code>@action</code>, <code>@destination</code> and <code>@purpose</code>)</p></li>
-		<li><p><a href="#combine3">Test: combining all three attributes</a> (<code>@purpose</code>)</p></li>
-		<li><p><a href="#combine2">Test: combining action and destination attributes only</a> (<code>@purpose</code> and <code>@meaning</code>)</p></li>
+		<li><p><a href="#module1">Module 1 implementation</a> (a partial implementation covering some values for <code>@action</code>, <code>@destination</code> and <code>@purpose</code>)</p></li>
+		<li><p><a href="#combine3">Experiment: combining action, destination and purpose attributes</a> (resulting in <code>@purpose</code>)</p></li>
+		<li><p><a href="#combine2">Experiment: combining action and destination attributes</a> (resulting in <code>@purpose</code> and <code>@meaning</code>)</p></li>
 	</ul>
 
-	<p>The implementation uses the same code regardless of which of the variants are being used.</p>
+	<p>Check out the <a href="https://github.com/matatk/personalization-semantics-explorations">GitHub repo</a> for the tests and code.</p>
 
 
-	<h2 id="module1">Module 1 Specification</h2>
+	<h2 id="module1">Module 1 implementation</h2>
 
 	<p>This section uses the specified <code>@action</code>, <code>@destination</code> and <code>@purpose</code> attributes. <code>@action</code> and <code>@destination</code> are expected to take one token value; <code>@purpose</code> can take two (per HTML autocomplete).</p>
 
@@ -76,6 +91,20 @@ p > code {
 	<div class="example">
 		<p>Please visit the <a href="#" data-destination="signin">log-in</a> page to continue.</p>
 		<code>&lt;p&gt;Please visit the &lt;a href=&quot;#&quot; data-destination=&quot;signin&quot;&gt;log-in&lt;/a&gt; page to continue.&lt;/p&gt;</code>
+	</div>
+
+	<h4>Anchor with a button role and destination</h4>
+
+	<div class="example">
+		<p><a href="#" role="button" class="btn" data-destination="help">Help</a></p>
+		<code>&lt;a href=&quot;#&quot; role=&quot;button&quot; data-destination=&quot;help&quot;&gt;Help&lt;/a&gt;</code>
+	</div>
+
+	<h4>Anchor with a button role and action</h4>
+
+	<div class="example">
+		<p><a href="#" role="button" class="btn" data-action="help">Help</a></p>
+		<code>&lt;a href=&quot;#&quot; role=&quot;button&quot; data-action=&quot;help&quot;&gt;Help&lt;/a&gt;</code>
 	</div>
 
 	<h4>Button</h4>
@@ -172,9 +201,9 @@ p > code {
 	</div>
 
 
-	<h2 id="combine3">Test: combining all three attributes</h2>
+	<h2 id="combine3">Experiment: combining action, destination and purpose attributes</h2>
 
-	<p>This section uses a single <code>@purpose</code> attribute. It can take one or two space-separated values, though it is not valid to supply two unless the attribute is being set on an input control. The nature of the interaction/information is determined by the element's <code>tagName</code> currently, but could be taken from its <code>role</code> instead.</p>
+	<p>This section uses a single <code>@purpose</code> attribute. It can take one or two space-separated values, though it is not valid to supply two values on an element with a <code>role</code> of "link" or "button". The nature of the interaction/information is determined by the element's <code>role</code>.</p>
 
 	<h3>Static content</h3>
 
@@ -192,11 +221,25 @@ p > code {
 		<code>&lt;p&gt;Please visit the &lt;a href=&quot;#&quot; data-purpose=&quot;signin&quot;&gt;log-in&lt;/a&gt; page to continue.&lt;/p&gt;</code>
 	</div>
 
+	<h4>Anchor with a button role</h4>
+
+	<div class="example">
+		<p><a href="#" role="button" class="btn" data-purpose="help">Help</a></p>
+		<code>&lt;a href=&quot;#&quot; role=&quot;button&quot; data-purpose=&quot;help&quot;&gt;Help&lt;/a&gt;</code>
+	</div>
+
 	<h4>Button</h4>
 
 	<div class="example">
 		<p><button data-purpose="signin" class="demo-login-button">Log in</button></p>
 		<code>&lt;p&gt;&lt;button data-purpose=&quot;signin&quot; class=&quot;demo-login-button&quot;&gt;Log in&lt;/button&gt;&lt;/p&gt;</code>
+	</div>
+
+	<h4>Button with a link role</h4>
+
+	<div class="example">
+		<p><button role="link" data-purpose="signin" class="demo-login-button">Log in</button></p>
+		<code>&lt;p&gt;&lt;button role=&quot;link&quot; data-purpose=&quot;signin&quot; class=&quot;demo-login-button&quot;&gt;Log in&lt;/button&gt;&lt;/p&gt;</code>
 	</div>
 
 	<h3>Forms</h3>
@@ -286,9 +329,9 @@ p > code {
 	</div>
 
 
-	<h2 id="combine2">Test: combining action and destination attributes only</h2>
+	<h2 id="combine2">Experiment: combining action and destination attributes</h2>
 
-	<p>This section uses two attributes: <code>@purpose</code>, which combines the current <code>@action</code> and <code>@destination</code> attributes, and <code>@meaning</code>, which behaves like the current <code>@purpose</code> attribute, but can be applied to static text too. It's invalid to give two token values to <code>@meaning</code> if it's being applied to static content (as opposed to an input control). The nature of the interaction/information is determined by the element's <code>tagName</code> currently, but could be taken from its <code>role</code> instead.</p>
+	<p>This section uses two attributes: <code>@purpose</code>, which combines the current <code>@action</code> and <code>@destination</code> attributes, and <code>@meaning</code>, which behaves like the current <code>@purpose</code> attribute, but can be applied to static content too. The nature of the interaction/information is determined by the element's <code>role</code>.</p>
 
 	<h3>Static content</h3>
 
@@ -306,11 +349,25 @@ p > code {
 		<code>&lt;p&gt;Please visit the &lt;a href=&quot;#&quot; data-purpose=&quot;signin&quot;&gt;log-in&lt;/a&gt; page to continue.&lt;/p&gt;</code>
 	</div>
 
+	<h4>Anchor with a button role</h4>
+
+	<div class="example">
+		<p><a href="#" role="button" class="btn" data-purpose="help">Help</a></p>
+		<code>&lt;a href=&quot;#&quot; role=&quot;button&quot; data-purpose=&quot;help&quot;&gt;Help&lt;/a&gt;</code>
+	</div>
+
 	<h4>Button</h4>
 
 	<div class="example">
 		<p><button data-purpose="signin" class="demo-login-button">Log in</button></p>
 		<code>&lt;p&gt;&lt;button data-purpose=&quot;signin&quot; class=&quot;demo-login-button&quot;&gt;Log in&lt;/button&gt;&lt;/p&gt;</code>
+	</div>
+
+	<h4>Button with a link role</h4>
+
+	<div class="example">
+		<p><button role="link" data-purpose="signin" class="demo-login-button">Log in</button></p>
+		<code>&lt;p&gt;&lt;button role=&quot;link&quot; data-purpose=&quot;signin&quot; class=&quot;demo-login-button&quot;&gt;Log in&lt;/button&gt;&lt;/p&gt;</code>
 	</div>
 
 	<h3>Forms</h3>

@@ -10,11 +10,12 @@
 
 	const meanings = {
 		// Action-Destinations
+		help: '\u{1F4D6}',
 		signin: '\u{1F510}',
 		// Purposes
+		language: '\u{1F5E3}',
 		name: '\u{1F464}',
-		tel: '\u{1F4DE}',
-		language: '\u{1F5E3}'
+		tel: '\u{1F4DE}'
 	};
 
 	const qualifiers = {
@@ -96,13 +97,31 @@
 						element, makeGlpyhs(doc, types.meaning, glyphs));
 					break
 				case 'A':
+				case 'BUTTON': {
+					let type;
+					if (attrName === 'data-action') {
+						type = types.action;
+					} else if (attrName === 'data-destination') {
+						type = types.destination;
+					} else if (attrName === 'data-purpose') {
+						// Note: non-standard
+						const explicitRole = element.getAttribute('role');
+						if (explicitRole === 'button') {
+							type = types.action;
+						} else if (explicitRole === 'link') {
+							type = types.destination;
+						} else if (element.tagName === 'BUTTON') {
+							type = types.action;
+						} else {
+							type = types.destination;
+						}
+					} else {
+						throw Error(`Unexpected "${attrName}" on ${element.tagName}`)
+					}
 					insertBeforeFirstChild(
-						element, makeGlpyhs(doc, types.destination, glyphs));
+						element, makeGlpyhs(doc, type, glyphs));
 					break
-				case 'BUTTON':
-					insertBeforeFirstChild(
-						element, makeGlpyhs(doc, types.action, glyphs));
-					break
+				}
 				case 'INPUT':
 					element.before(makeGlpyhs(doc, types.purpose, glyphs));
 					break
