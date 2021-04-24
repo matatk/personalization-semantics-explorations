@@ -18,9 +18,9 @@ const meanings = {
 const qualifiers = {
 	home: '\u{1F3E1}',
 	work: '\u{1F6E0}',
-	mobile: 'TODO',  // TODO
-	fax: 'TODO',  // TODO
-	pager: 'TODO'  // TODO
+	mobile: 'TODO',     // TODO
+	fax: 'TODO',        // TODO
+	pager: 'TODO'       // TODO
 }
 
 function makeGlyph(doc, content) {
@@ -33,21 +33,14 @@ function makeGlyph(doc, content) {
 function makeGlpyhs(doc, typeName, glyphs) {
 	const container = doc.createElement('SPAN')
 	container.setAttribute('data-personalization-output', '')
-
 	container.appendChild(makeGlyph(doc, typeName))
-
-	if (Array.isArray(glyphs)) {
-		for (const glyph of glyphs) {
-			container.appendChild(makeGlyph(doc, glyph))
-		}
-	} else {
-		container.appendChild(makeGlyph(doc, glyphs))
+	for (const glyph of glyphs) {
+		container.appendChild(makeGlyph(doc, glyph))
 	}
-
 	return container
 }
 
-function insertBeforeFirstChild(element, thing) {
+function insertAtStartOf(element, thing) {
 	if (element.firstChild) {
 		element.firstChild.before(thing)
 	} else {
@@ -77,21 +70,19 @@ export default function changer(doc) {
 		const attrValue = element.getAttribute(attrName)
 
 		if (!attrValue) {
-			throw Error(`Missing @${attrName} attribute value`)
+			throw new Error(`Missing @${attrName} attribute value`)
 		}
 
+		// TODO: Check for >1 values passed to non-input elements?
 		const [first, second] = attrValue.split(' ')
 		const glyphs = second
 			? [qualifiers[first], meanings[second]]
 			: [meanings[first]]
 
-		// TODO: Check for >1 values passed to non-input elements?
-
 		switch (element.tagName) {
 			case 'P':
 			case 'SPAN':
-				insertBeforeFirstChild(
-					element, makeGlpyhs(doc, types.meaning, glyphs))
+				insertAtStartOf(element, makeGlpyhs(doc, types.meaning, glyphs))
 				break
 			case 'A':
 			case 'BUTTON': {
@@ -101,7 +92,7 @@ export default function changer(doc) {
 				} else if (attrName === 'data-destination') {
 					type = types.destination
 				} else if (attrName === 'data-purpose') {
-					// Note: non-standard
+					// Note: non-standard; thus also not part of the test suite.
 					const explicitRole = element.getAttribute('role')
 					if (explicitRole === 'button') {
 						type = types.action
@@ -112,11 +103,8 @@ export default function changer(doc) {
 					} else {
 						type = types.destination
 					}
-				} else {
-					throw Error(`Unexpected "${attrName}" on ${element.tagName}`)
 				}
-				insertBeforeFirstChild(
-					element, makeGlpyhs(doc, type, glyphs))
+				insertAtStartOf(element, makeGlpyhs(doc, type, glyphs))
 				break
 			}
 			case 'INPUT':
@@ -126,7 +114,7 @@ export default function changer(doc) {
 				const container = makeGlpyhs(doc, types.purpose, glyphs)
 				const legend = element.querySelector('legend')
 				if (legend) {
-					insertBeforeFirstChild(legend, container)
+					insertAtStartOf(legend, container)
 				} else {
 					element.before(container)
 				}
