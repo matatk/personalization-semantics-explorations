@@ -90,28 +90,28 @@ p > code {
 
 	<div class="example">
 		<p>Please visit the <a href="#" data-destination="signin">log-in</a> page to continue.</p>
-		<code>&lt;p&gt;Please visit the &lt;a href=&quot;#&quot; data-destination=&quot;signin&quot;&gt;log-in&lt;/a&gt; page to continue.&lt;/p&gt;</code>
+		<code>&lt;p&gt;Please visit the &lt;a href=&quot;#&quot; <mark>data-destination=&quot;signin&quot;</mark>&gt;log-in&lt;/a&gt; page to continue.&lt;/p&gt;</code>
 	</div>
 
 	<h4>Anchor with a button role and destination</h4>
 
 	<div class="example">
 		<p><a href="#" role="button" class="btn" data-destination="help">Help</a></p>
-		<code>&lt;a href=&quot;#&quot; role=&quot;button&quot; data-destination=&quot;help&quot;&gt;Help&lt;/a&gt;</code>
+		<code>&lt;a href=&quot;#&quot; role=&quot;button&quot; <mark>data-destination=&quot;help&quot;</mark>&gt;Help&lt;/a&gt;</code>
 	</div>
 
 	<h4>Anchor with a button role and action</h4>
 
 	<div class="example">
 		<p><a href="#" role="button" class="btn" data-action="help">Help</a></p>
-		<code>&lt;a href=&quot;#&quot; role=&quot;button&quot; data-action=&quot;help&quot;&gt;Help&lt;/a&gt;</code>
+		<code>&lt;a href=&quot;#&quot; role=&quot;button&quot; <mark>data-action=&quot;help&quot;</mark>&gt;Help&lt;/a&gt;</code>
 	</div>
 
 	<h4>Button</h4>
 
 	<div class="example">
 		<p><button data-action="signin" class="demo-login-button">Log in</button></p>
-		<code>&lt;p&gt;&lt;button data-action=&quot;signin&quot; class=&quot;demo-login-button&quot;&gt;Log in&lt;/button&gt;&lt;/p&gt;</code>
+		<code>&lt;p&gt;&lt;button <mark>data-action=&quot;signin&quot;</mark> class=&quot;demo-login-button&quot;&gt;Log in&lt;/button&gt;&lt;/p&gt;</code>
 	</div>
 
 	<h3>Forms</h3>
@@ -126,7 +126,7 @@ p > code {
 		<pre><code>&lt;p&gt;
  &lt;label&gt;
   Name
-  &lt;input data-purpose=&quot;name&quot;&gt;
+  &lt;input <mark>data-purpose=&quot;name&quot;</mark>&gt;
  &lt;/label&gt;
 &lt;/p&gt;</code></pre>
 	</div>
@@ -141,7 +141,7 @@ p > code {
 		<pre><code>&lt;p&gt;
  &lt;label&gt;
   Home phone
-  &lt;input data-purpose=&quot;home tel&quot;&gt;
+  &lt;input <mark>data-purpose=&quot;home tel&quot;</mark>&gt;
  &lt;/label&gt;
 &lt;/p&gt;</code></pre>
 	</div>
@@ -154,7 +154,7 @@ p > code {
 		<pre><code>&lt;p&gt;
  &lt;label&gt;
   Work phone
-  &lt;input data-purpose=&quot;work tel&quot;&gt;
+  &lt;input <mark>data-purpose=&quot;work tel&quot;</mark>&gt;
  &lt;/label&gt;
 &lt;/p&gt;</code></pre>
 	</div>
@@ -177,7 +177,7 @@ p > code {
 				Klingon
 			</label></p>
 		</fieldset>
-		<pre><code>&lt;fieldset data-purpose=&quot;language&quot;&gt;
+		<pre><code>&lt;fieldset <mark>data-purpose=&quot;language&quot;</mark>&gt;
  &lt;legend&gt;language&lt;/legend&gt;
  &lt;p&gt;
   &lt;label&gt;
@@ -209,7 +209,7 @@ p > code {
 
 	<div class="example">
 		<p data-purpose="tel">04263 9876531</p>
-		<code>&lt;p data-purpose=&quot;tel&quot;&gt;04263 9876531&lt;/p&gt;</code>
+		<code>&lt;p <mark>data-purpose=&quot;tel&quot;</mark>&gt;04263 9876531&lt;/p&gt;</code>
 	</div>
 
 	<h3>Navigation and Actions</h3>
@@ -218,28 +218,28 @@ p > code {
 
 	<div class="example">
 		<p>Please visit the <a href="#" data-purpose="signin">log-in</a> page to continue.</p>
-		<code>&lt;p&gt;Please visit the &lt;a href=&quot;#&quot; data-purpose=&quot;signin&quot;&gt;log-in&lt;/a&gt; page to continue.&lt;/p&gt;</code>
+		<code>&lt;p&gt;Please visit the &lt;a href=&quot;#&quot; <mark>data-purpose=&quot;signin&quot;</mark>&gt;log-in&lt;/a&gt; page to continue.&lt;/p&gt;</code>
 	</div>
 
 	<h4>Anchor with a button role</h4>
 
 	<div class="example">
 		<p><a href="#" role="button" class="btn" data-purpose="help">Help</a></p>
-		<code>&lt;a href=&quot;#&quot; role=&quot;button&quot; data-purpose=&quot;help&quot;&gt;Help&lt;/a&gt;</code>
+		<code>&lt;a href=&quot;#&quot; role=&quot;button&quot; <mark>data-purpose=&quot;help&quot;</mark>&gt;Help&lt;/a&gt;</code>
 	</div>
 
 	<h4>Button</h4>
 
 	<div class="example">
 		<p><button data-purpose="signin" class="demo-login-button">Log in</button></p>
-		<code>&lt;p&gt;&lt;button data-purpose=&quot;signin&quot; class=&quot;demo-login-button&quot;&gt;Log in&lt;/button&gt;&lt;/p&gt;</code>
+		<code>&lt;p&gt;&lt;button <mark>data-purpose=&quot;signin&quot;</mark> class=&quot;demo-login-button&quot;&gt;Log in&lt;/button&gt;&lt;/p&gt;</code>
 	</div>
 
 	<h4>Button with a link role</h4>
 
 	<div class="example">
 		<p><button role="link" data-purpose="signin" class="demo-login-button">Log in</button></p>
-		<code>&lt;p&gt;&lt;button role=&quot;link&quot; data-purpose=&quot;signin&quot; class=&quot;demo-login-button&quot;&gt;Log in&lt;/button&gt;&lt;/p&gt;</code>
+		<code>&lt;p&gt;&lt;button role=&quot;link&quot; <mark>data-purpose=&quot;signin&quot;</mark> class=&quot;demo-login-button&quot;&gt;Log in&lt;/button&gt;&lt;/p&gt;</code>
 	</div>
 
 	<h3>Forms</h3>
@@ -254,7 +254,7 @@ p > code {
 		<pre><code>&lt;p&gt;
  &lt;label&gt;
   Name
-  &lt;input data-purpose=&quot;name&quot;&gt;
+  &lt;input <mark>data-purpose=&quot;name&quot;</mark>&gt;
  &lt;/label&gt;
 &lt;/p&gt;</code></pre>
 	</div>
@@ -269,7 +269,7 @@ p > code {
 		<pre><code>&lt;p&gt;
  &lt;label&gt;
   Home phone
-  &lt;input data-purpose=&quot;home tel&quot;&gt;
+  &lt;input <mark>data-purpose=&quot;home tel&quot;</mark>&gt;
  &lt;/label&gt;
 &lt;/p&gt;</code></pre>
 	</div>
@@ -282,7 +282,7 @@ p > code {
 		<pre><code>&lt;p&gt;
  &lt;label&gt;
   Work phone
-  &lt;input data-purpose=&quot;work tel&quot;&gt;
+  &lt;input <mark>data-purpose=&quot;work tel&quot;</mark>&gt;
  &lt;/label&gt;
 &lt;/p&gt;</code></pre>
 	</div>
@@ -305,7 +305,7 @@ p > code {
 				Klingon
 			</label></p>
 		</fieldset>
-		<pre><code>&lt;fieldset data-purpose=&quot;language&quot;&gt;
+		<pre><code>&lt;fieldset <mark>data-purpose=&quot;language&quot;</mark>&gt;
  &lt;legend&gt;Language&lt;/legend&gt;
  &lt;p&gt;
   &lt;label&gt;
@@ -337,7 +337,7 @@ p > code {
 
 	<div class="example">
 		<p data-meaning="tel">04263 9876531</p>
-		<code>&lt;p data-meaning=&quot;tel&quot;&gt;04263 9876531&lt;/p&gt;</code>
+		<code>&lt;p <mark>data-meaning=&quot;tel&quot;</mark>&gt;04263 9876531&lt;/p&gt;</code>
 	</div>
 
 	<h3>Navigation and Actions</h3>
@@ -346,28 +346,28 @@ p > code {
 
 	<div class="example">
 		<p>Please visit the <a href="#" data-purpose="signin">log-in</a> page to continue.</p>
-		<code>&lt;p&gt;Please visit the &lt;a href=&quot;#&quot; data-purpose=&quot;signin&quot;&gt;log-in&lt;/a&gt; page to continue.&lt;/p&gt;</code>
+		<code>&lt;p&gt;Please visit the &lt;a href=&quot;#&quot; <mark>data-purpose=&quot;signin&quot;</mark>&gt;log-in&lt;/a&gt; page to continue.&lt;/p&gt;</code>
 	</div>
 
 	<h4>Anchor with a button role</h4>
 
 	<div class="example">
 		<p><a href="#" role="button" class="btn" data-purpose="help">Help</a></p>
-		<code>&lt;a href=&quot;#&quot; role=&quot;button&quot; data-purpose=&quot;help&quot;&gt;Help&lt;/a&gt;</code>
+		<code>&lt;a href=&quot;#&quot; role=&quot;button&quot; <mark>data-purpose=&quot;help&quot;</mark>&gt;Help&lt;/a&gt;</code>
 	</div>
 
 	<h4>Button</h4>
 
 	<div class="example">
 		<p><button data-purpose="signin" class="demo-login-button">Log in</button></p>
-		<code>&lt;p&gt;&lt;button data-purpose=&quot;signin&quot; class=&quot;demo-login-button&quot;&gt;Log in&lt;/button&gt;&lt;/p&gt;</code>
+		<code>&lt;p&gt;&lt;button <mark>data-purpose=&quot;signin&quot;</mark> class=&quot;demo-login-button&quot;&gt;Log in&lt;/button&gt;&lt;/p&gt;</code>
 	</div>
 
 	<h4>Button with a link role</h4>
 
 	<div class="example">
 		<p><button role="link" data-purpose="signin" class="demo-login-button">Log in</button></p>
-		<code>&lt;p&gt;&lt;button role=&quot;link&quot; data-purpose=&quot;signin&quot; class=&quot;demo-login-button&quot;&gt;Log in&lt;/button&gt;&lt;/p&gt;</code>
+		<code>&lt;p&gt;&lt;button role=&quot;link&quot; <mark>data-purpose=&quot;signin&quot;</mark> class=&quot;demo-login-button&quot;&gt;Log in&lt;/button&gt;&lt;/p&gt;</code>
 	</div>
 
 	<h3>Forms</h3>
@@ -382,7 +382,7 @@ p > code {
 		<pre><code>&lt;p&gt;
  &lt;label&gt;
   Name
-  &lt;input data-meaning=&quot;name&quot;&gt;
+  &lt;input <mark>data-meaning=&quot;name&quot;</mark>&gt;
  &lt;/label&gt;
 &lt;/p&gt;</code></pre>
 	</div>
@@ -397,7 +397,7 @@ p > code {
 		<pre><code>&lt;p&gt;
  &lt;label&gt;
   Home phone
-  &lt;input data-meaning=&quot;home tel&quot;&gt;
+  &lt;input <mark>data-meaning=&quot;home tel&quot;</mark>&gt;
  &lt;/label&gt;
 &lt;/p&gt;</code></pre>
 	</div>
@@ -410,7 +410,7 @@ p > code {
 		<pre><code>&lt;p&gt;
  &lt;label&gt;
   Work phone
-  &lt;input data-meaning=&quot;work tel&quot;&gt;
+  &lt;input <mark>data-meaning=&quot;work tel&quot;</mark>&gt;
  &lt;/label&gt;
 &lt;/p&gt;</code></pre>
 	</div>
@@ -433,7 +433,7 @@ p > code {
 				Klingon
 			</label></p>
 		</fieldset>
-		<pre><code>&lt;fieldset data-meaning=&quot;language&quot;&gt;
+		<pre><code>&lt;fieldset <mark>data-meaning=&quot;language&quot;</mark>&gt;
  &lt;legend&gt;Language&lt;/legend&gt;
  &lt;p&gt;
   &lt;label&gt;
