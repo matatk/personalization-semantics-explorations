@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en" style="--countdown-time: 180s;">
+<head>
+	<meta charset="UTF-8">
+	<title>Distracting sign-up form</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* { box-sizing: border-box; }
+
+html {
+	background-color: #eef;
+}
+
+body {
+	font-family: sans-serif;
+	font-size: 1.2em;
+	line-height: 1.5;
+	margin: auto;
+	padding: 2rem 0;
+	width: 70ch;
+	max-width: 98%;
+}
+
+header {
+	padding-bottom: 1rem;
+}
+
+#logo {
+	width: 128px;
+	height: 128px;
+}
+
+main {
+	background-color: white;
+	border-radius: 1rem;
+	padding: 0.5rem 1rem;
+}
+
+#countdown {
+	font-size: 1.5rem;
+	font-weight: bold;
+	font-family: monospace;
+	animation: alert var(--countdown-time) linear 1 forwards;
+}
+
+input, button {
+	font-size: inherit;
+}
+
+label {
+	display: block;
+}
+
+#fields label::after {
+	content: ":";
+}
+
+input {
+	margin-bottom: 1rem;
+}
+
+#buttons {
+	display: flex;
+	margin-top: 1rem;
+	gap: 1rem;
+}
+
+input[type="reset"], input[type="submit"] {
+	padding: 0.5rem 1rem;
+	border-radius: 0.25rem;
+	border: 2px solid blue;
+}
+
+input[type="reset"] {
+	background-color: white;
+	color: blue;
+}
+
+input[type="submit"] {
+	background-color: blue;
+	color: white;
+}
+
+input:focus,
+input:hover {
+	outline: 2px solid blue;
+	outline-offset: 2px;
+}
+
+fieldset {
+	width: max-content;
+}
+
+fieldset label {
+	padding-right: 0.5em;
+}
+
+legend {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+@media screen and (min-width: 40em) {
+	#fields {
+		display: grid;
+		grid-template-columns: max-content max-content;
+		gap: 1rem 2rem;
+	}
+}
+
+#ticker {
+	margin-top: 2rem;
+	padding: 0.5rem;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	#ticker {
+		height: 2.5rem;
+		overflow: hidden;
+		padding: 0.5rem 0;
+	}
+
+	#ticker p {
+		animation: marquee 10s linear infinite;
+		animation-delay: 1s;
+		margin: 0;
+		padding-left: 100%;
+		width: max-content;
+	}
+}
+
+@keyframes marquee {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(-100%);
+	}
+}
+
+@keyframes alert {
+	from {
+		/* noop */
+	}
+	to {
+		color: red;
+	}
+}
+
+/* Used internally to remove distractions and simplify stuff */
+
+.no-sensory [data-distraction="sensory"] { display: none; }
+.critical [data-simplification]:not([data-simplification="critical"]) {
+	display: none;
+}
+.medium [data-simplification="low"] { display: none; }
+
+#control-panel {
+	position: fixed;
+	top: 0;
+	right: 0;
+	background-color: green;
+	color: white;
+	padding: 0.15em 0.5em;
+}
+</style>
+</head>
+<body>
+	<details id="control-panel" data-simplification="medium">
+		<summary>Adapt UA tests</summary>
+		<button id="distractions">remove sensory distractions</button>
+		<button id="medium">medium level</button>
+		<button id="critical">critical level</button>
+		<ul>
+			<li>The page also reacts to <code>prefers-reduced-motion</code>.</li>
+			<li>Low, medium, and critical <code>simplification</code> levels are shown by default.</li>
+		</ul>
+	</details>
+	<header>
+		<picture data-distraction="sensory">
+			<source srcset="441px-Blue_Three-Twist_Knot.png" media="(prefers-reduced-motion: reduce)">
+			<img id="logo" alt="Logo" src="Blue_Three-Twist_Knot_Animated.gif">
+		</picture>
+	</header>
+	<main>
+		<h1 data-simplification="critical">Distracting sign&#8209;up form</h1>
+		<section aria-labelledby="time-remaining" data-simplification="critical">
+			<p><span id="time-remaining">Time left:</span> <span id="countdown"></span></p>
+		</section>
+		<form>
+			<div id="fields">
+				<label data-simplification="critical" for="name">Name</label>
+				<input data-simplification="critical" type="text" id="name">
+
+				<label data-simplification="critical" for="email">Email address</label>
+				<input data-simplification="critical" type="text" id="email">
+			</div>
+
+			<fieldset data-simplification="low">
+				<legend>Areas of interest</legend>
+				<label><input type="checkbox"> Blueberry marketing</label>
+				<label><input type="checkbox"> Portfolio management</label>
+				<label><input type="checkbox"> Fractals</label>
+				<label><input type="checkbox"> Doctor Who</label>
+			</fieldset>
+
+			<div id="buttons">
+				<input data-simplification="medium" type="reset">
+				<input data-simplification="critical" type="submit" value="Submit">
+			</div>
+		</form>
+	</main>
+	<footer>
+		<div id="ticker" data-simplification="low" data-distraction="sensory">
+			<p>This is a long line of text that is like one of those old HTML <code>&lt;marquee&gt;</code> elements. It's a really long line of text, that will most likely need to be scrolled to fit within the area that is available to it.</p>
+		</div>
+	<footer>
+	<script>
+		// Simplification handling
+
+		function setSimplification(element) {
+			if (!element.children.length) {
+				if (!element.hasAttribute('data-simplification')) {
+					let parent = element.parentElement
+					while (parent !== document.body) {
+						if (parent.hasAttribute('data-simplification')) return
+						parent = parent.parentElement
+					}
+					element.setAttribute('data-simplification', 'medium')
+				}
+			}
+		}
+
+		for (const element of document.querySelectorAll('body *')) {
+			setSimplification(element)
+		}
+
+		document.getElementById('critical').addEventListener('click', () => {
+			document.documentElement.classList.add('critical')
+		})
+
+		document.getElementById('medium').addEventListener('click', function() {
+			document.documentElement.classList.add('medium')
+			this.disabled = true
+		})
+
+		// Distraction handling
+
+		document.getElementById('distractions').addEventListener('click', function() {
+			document.documentElement.classList.add('no-sensory')
+			this.disabled = true
+		})
+
+		// Clock
+
+		const display = document.getElementById('countdown')
+		let remaining = parseInt(
+			document.documentElement.style.getPropertyValue('--countdown-time'))
+
+		function update() {
+			const minutes = Math.floor(remaining / 60)
+			const seconds = remaining - minutes * 60
+			display.innerText = `${minutes}:${String(seconds).padStart(2, '0')}`
+			remaining -= 1
+			if (remaining > -1) {
+				setTimeout(update, 1e3)
+			}
+		}
+
+		update()
+	</script>
+</body>
+</html>
